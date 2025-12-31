@@ -76,7 +76,7 @@ portfolio-mrstudio/
 
 ## 📧 Contacto
 
-**Miguel A. Ramos Alarcón**
+**Miguel A. Ramos Alarcon**
 - Email: mramos20681@gmail.com
 - Teléfono: +51 986-397-215
 - GitHub: [@miguelramosalarcon](https://github.com/miguelramosalarcon)
