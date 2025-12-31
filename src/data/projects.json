@@ -21,7 +21,7 @@
     "description": "Subdominio creado para el área de servicio técnico de BOXA",
     "tags": ["WordPress", "Custom Development"],
     "status": "active",
-    "featured": false,
+    "featured": true,
     "year": "2025",
     "category": "corporate"
   },
@@ -34,7 +34,7 @@
     "description": "Sitio corporativo con blog institucional y optimización SEO",
     "tags": ["WordPress", "PHP", "SEO"],
     "status": "active",
-    "featured": true,
+    "featured": false,
     "year": "2019-2025",
     "category": "corporate"
   },
@@ -73,7 +73,7 @@
     "description": "E-commerce WooCommerce optimizado con WP Rocket y mejoras de performance",
     "tags": ["WooCommerce", "Performance", "WP Rocket"],
     "status": "active",
-    "featured": true,
+    "featured": false,
     "year": "2024-2025",
     "category": "ecommerce"
   },
@@ -190,7 +190,7 @@
     "description": "Tienda online de ropa y accesorios",
     "tags": ["Shopify","E-commerce", "Fashion"],
     "status": "active",
-    "featured": false,
+    "featured": true,
     "year": "2025",
     "category": "ecommerce"
   },
