@@ -1,0 +1,282 @@
+---
+import { PERSONAL_INFO } from '../../utils/constants.js';
+---
+
+<nav class="navbar" aria-label="Navegación principal">
+  <div class="container navbar-container">
+    <!-- Logo -->
+    <a href="/" class="navbar-logo" aria-label="MRStudio - Inicio">
+      <img 
+        src={`${import.meta.env.BASE_URL}/images/logo/logo-original.png`}
+        alt="MRStudio Logo" 
+        width="160"
+        height="50"
+      />
+    </a>
+    
+    <!-- Menu Desktop -->
+    <ul class="navbar-menu" role="list">
+      <li><a href="#inicio" class="navbar-link">Inicio</a></li>
+      <li><a href="#proyectos" class="navbar-link">Proyectos</a></li>
+      <li><a href="#skills" class="navbar-link">Skills</a></li>
+      <li><a href="#experiencia" class="navbar-link">Experiencia</a></li>
+      <!-- <li><a href="#contacto" class="navbar-link">Contacto</a></li> -->
+    </ul>
+    
+    <!-- Theme Toggle -->
+    <button 
+      id="theme-toggle" 
+      class="theme-toggle" 
+      aria-label="Cambiar tema"
+      type="button"
+    >
+      <span class="theme-icon theme-icon-light">☀️</span>
+      <span class="theme-icon theme-icon-dark">🌙</span>
+    </button>
+    
+    <!-- Mobile Menu Button -->
+    <button 
+      id="mobile-menu-toggle" 
+      class="mobile-menu-toggle" 
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      type="button"
+    >
+      <span class="hamburger-icon"></span>
+    </button>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+    <ul class="mobile-menu-list" role="list">
+      <li><a href="#inicio" class="mobile-menu-link">Inicio</a></li>
+      <li><a href="#proyectos" class="mobile-menu-link">Proyectos</a></li>
+      <li><a href="#skills" class="mobile-menu-link">Skills</a></li>
+      <li><a href="#experiencia" class="mobile-menu-link">Experiencia</a></li>
+      <!-- <li><a href="#contacto" class="mobile-menu-link">Contacto</a></li> -->
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+    background-color: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
+    backdrop-filter: blur(10px);
+    transition: background-color var(--transition-base);
+  }
+  
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) var(--space-lg);
+    gap: var(--space-lg);
+  }
+  
+  /* Logo */
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  
+  .navbar-logo img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+  
+  /* Menu Desktop */
+  .navbar-menu {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-link {
+    color: var(--color-text);
+    font-weight: 500;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+  }
+  
+  .navbar-link:hover {
+    color: var(--color-primary);
+    background-color: rgba(var(--color-primary-rgb), 0.1);
+  }
+  
+  /* Theme Toggle */
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    border: 2px solid var(--color-border);
+    background-color: var(--color-background-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+  
+  .theme-toggle:hover {
+    border-color: var(--color-primary);
+    transform: scale(1.05);
+  }
+  
+  /* .theme-icon {
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+  
+  .theme-icon-dark {
+    display: none;
+  }
+  
+  [data-theme="dark"] .theme-icon-light {
+    display: none;
+  }
+  
+  [data-theme="dark"] .theme-icon-dark {
+    display: block;
+  } */
+  
+  /* Mobile Menu Toggle */
+  .mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .hamburger-icon {
+    position: relative;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text);
+    transition: all var(--transition-fast);
+  }
+  
+  .hamburger-icon::before,
+  .hamburger-icon::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text);
+    transition: all var(--transition-fast);
+  }
+  
+  .hamburger-icon::before {
+    top: -8px;
+  }
+  
+  .hamburger-icon::after {
+    bottom: -8px;
+  }
+  
+  /* Mobile Menu */
+  .mobile-menu {
+    display: none;
+    background-color: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-lg);
+  }
+  
+  .mobile-menu[aria-hidden="false"] {
+    display: block;
+  }
+  
+  .mobile-menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  .mobile-menu-link {
+    display: block;
+    padding: var(--space-md);
+    color: var(--color-text);
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+  }
+  
+  .mobile-menu-link:hover {
+    color: var(--color-primary);
+    background-color: rgba(var(--color-primary-rgb), 0.1);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .navbar-menu {
+      display: none;
+    }
+    
+    .mobile-menu-toggle {
+      display: flex;
+    }
+  }
+</style>
+
+<script>
+  // Theme Toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+  
+  // Check for saved theme preference or default to 'light'
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  html.setAttribute('data-theme', currentTheme);
+  
+  themeToggle?.addEventListener('click', () => {
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  });
+  
+  // Mobile Menu Toggle
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  mobileMenuToggle?.addEventListener('click', () => {
+    const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+    mobileMenuToggle.setAttribute('aria-expanded', String(!isExpanded));
+    mobileMenu?.setAttribute('aria-hidden', String(isExpanded));
+  });
+  
+  // Close mobile menu when clicking on a link
+  const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+  mobileMenuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+      mobileMenu?.setAttribute('aria-hidden', 'true');
+    });
+  });
+  
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href') as string);
+      target?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
+  });
+</script>

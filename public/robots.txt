@@ -1,0 +1,7 @@
+# robots.txt - Portfolio MRStudio
+# https://miguelramosalarcon.github.io/portfolio-mrstudio
+
+User-agent: *
+Allow: /
+
+Sitemap: https://miguelramosalarcon.github.io/portfolio-mrstudio/sitemap-index.xml

@@ -1,0 +1,339 @@
+---
+import ProjectCard from '../ui/ProjectCard.astro';
+import projectsData from '../../data/projects.json';
+
+// Ordenar proyectos: destacados primero, luego por año
+const projects = projectsData.sort((a, b) => {
+  // Primero destacados
+  if (a.featured && !b.featured) return -1;
+  if (!a.featured && b.featured) return 1;
+  
+  // Luego activos antes que archivados
+  if (a.status === 'active' && b.status !== 'active') return -1;
+  if (a.status !== 'active' && b.status === 'active') return 1;
+  
+  // Finalmente por año (más reciente primero)
+  return b.year.localeCompare(a.year);
+});
+
+// Obtener categorías únicas
+const categories = ['Todos', ...new Set(projects.map(p => p.category))];
+
+// Obtener tecnologías únicas para filtros
+const allTechs = [...new Set(projects.flatMap(p => p.tags))];
+---
+
+<section id="proyectos" class="projects-section section">
+  <div class="container">
+    <!-- Header -->
+    <div class="section-header">
+      <h2 class="section-title">
+        <span class="title-icon">📂</span>
+        Portfolio de Proyectos
+      </h2>
+      <p class="section-subtitle">
+        {projects.length} proyectos desarrollados | {projects.filter(p => p.status === 'active').length} activos
+      </p>
+    </div>
+    
+    <!-- Filtros -->
+    <div class="filters">
+      <div class="filter-group">
+        <label class="filter-label">Estado:</label>
+        <div class="filter-buttons" role="group" aria-label="Filtrar por estado">
+          <button class="filter-btn active" data-filter="status" data-value="all">
+            Todos ({projects.length})
+          </button>
+          <button class="filter-btn" data-filter="status" data-value="active">
+            Activos ({projects.filter(p => p.status === 'active').length})
+          </button>
+          <button class="filter-btn" data-filter="status" data-value="archived">
+            Finalizados ({projects.filter(p => p.status === 'archived').length})
+          </button>
+        </div>
+      </div>
+      
+      <div class="filter-group">
+        <label class="filter-label">Tecnología:</label>
+        <div class="filter-buttons" role="group" aria-label="Filtrar por tecnología">
+          <button class="filter-btn active" data-filter="tech" data-value="all">
+            Todas
+          </button>
+          <button class="filter-btn" data-filter="tech" data-value="WordPress">
+            WordPress
+          </button>
+          <button class="filter-btn" data-filter="tech" data-value="Shopify">
+            Shopify
+          </button>
+          <button class="filter-btn" data-filter="tech" data-value="WooCommerce">
+            WooCommerce
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Grid de proyectos -->
+    <div class="projects-grid" id="projects-grid">
+      {projects.map((project) => (
+        <div 
+          class="project-item" 
+          data-status={project.status}
+          data-tags={project.tags.join(',')}
+        >
+          <ProjectCard 
+            title={project.title}
+            description={project.description}
+            image={project.image}
+            tags={project.tags}
+            status={project.status as 'active' | 'archived' | 'pending'}
+            url={project.url}
+            featured={project.featured}
+            year={project.year}
+          />
+        </div>
+      ))}
+    </div>
+    
+    <!-- Mensaje cuando no hay resultados -->
+    <div class="no-results" id="no-results" style="display: none;">
+      <p>😕 No se encontraron proyectos con estos filtros.</p>
+      <button class="btn-reset-filters">Limpiar filtros</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects-section {
+    background: var(--color-background);
+  }
+  
+  /* Header */
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+  }
+  
+  .section-title {
+    font-size: var(--text-4xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+  }
+  
+  .title-icon {
+    font-size: var(--text-5xl);
+  }
+  
+  .section-subtitle {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+  }
+  
+  /* Filtros */
+  .filters {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-3xl);
+    padding: var(--space-xl);
+    background: var(--color-background-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+  }
+  
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  
+  .filter-label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+  }
+  
+  .filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+  
+  .filter-btn {
+    padding: var(--space-sm) var(--space-lg);
+    border: 2px solid var(--color-border);
+    background: var(--color-background);
+    color: var(--color-text-secondary);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+  
+  .filter-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: rgba(var(--color-primary-rgb), 0.05);
+  }
+  
+  .filter-btn.active {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+  }
+  
+  /* Grid de proyectos */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2xl);
+  }
+  
+  .project-item {
+    animation: fadeInUp 0.5s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Mensaje sin resultados */
+  .no-results {
+    text-align: center;
+    padding: var(--space-3xl);
+    background: var(--color-background-secondary);
+    border-radius: var(--radius-lg);
+    border: 2px dashed var(--color-border);
+  }
+  
+  .no-results p {
+    font-size: var(--text-xl);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-lg);
+  }
+  
+  .btn-reset-filters {
+    padding: var(--space-md) var(--space-xl);
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+  
+  .btn-reset-filters:hover {
+    background: var(--color-primary-light);
+    transform: translateY(-2px);
+  }
+  
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .filter-buttons {
+      flex-direction: column;
+    }
+    
+    .filter-btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  // Filtros de proyectos
+  const filterButtons = document.querySelectorAll('.filter-btn') as NodeListOf<HTMLElement>;
+  const projectItems = document.querySelectorAll('.project-item') as NodeListOf<HTMLElement>;
+  const noResults = document.getElementById('no-results') as HTMLElement | null;
+  const btnResetFilters = document.querySelector('.btn-reset-filters') as HTMLElement | null;
+  
+  let activeFilters = {
+    status: 'all',
+    tech: 'all'
+  };
+  
+  function filterProjects() {
+    let visibleCount = 0;
+    
+    projectItems.forEach((item) => {
+      const status = item.getAttribute('data-status');
+      const tags = item.getAttribute('data-tags')?.split(',') || [];
+      
+      // Verificar filtro de estado
+      const statusMatch = activeFilters.status === 'all' || status === activeFilters.status;
+      
+      // Verificar filtro de tecnología
+      const techMatch = activeFilters.tech === 'all' || tags.includes(activeFilters.tech);
+      
+      // Mostrar/ocultar
+      if (statusMatch && techMatch) {
+        item.style.display = 'block';
+        visibleCount++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+    
+    // Mostrar mensaje si no hay resultados
+    if (noResults) {
+      noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+  }
+  
+  // Event listeners para botones de filtro
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filterType = btn.getAttribute('data-filter');
+      const filterValue = btn.getAttribute('data-value');
+      
+      if (!filterType || !filterValue) return;
+      
+      // Actualizar estado activo
+      activeFilters[filterType] = filterValue;
+      
+      // Actualizar clases activas
+      const group = btn.closest('.filter-buttons');
+      group?.querySelectorAll('.filter-btn').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Aplicar filtros
+      filterProjects();
+    });
+  });
+  
+  // Reset filters
+  btnResetFilters?.addEventListener('click', () => {
+    activeFilters = { status: 'all', tech: 'all' };
+    
+    filterButtons.forEach((btn) => {
+      if (btn.getAttribute('data-value') === 'all') {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+    
+    filterProjects();
+  });
+</script>

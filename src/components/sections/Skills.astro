@@ -1,0 +1,178 @@
+---
+import skillsData from '../../data/skills.json';
+---
+
+<section id="skills" class="skills-section section">
+  <div class="container">
+    <!-- Header -->
+    <div class="section-header">
+      <h2 class="section-title">
+        <span class="title-icon">💻</span>
+        Habilidades Técnicas
+      </h2>
+      <p class="section-subtitle">
+        Stack tecnológico y herramientas que domino
+      </p>
+    </div>
+    
+    <!-- Grid de Skills -->
+    <div class="skills-grid">
+      {skillsData.map((category) => (
+        <article class="skill-card">
+          <div class="skill-icon">{category.icon}</div>
+          <h3 class="skill-category">{category.category}</h3>
+          <ul class="skill-list" role="list">
+            {category.skills.map((skill) => (
+              <li class="skill-item">
+                <span class="skill-bullet">▸</span>
+                {skill}
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills-section {
+    background: var(--color-background-secondary);
+  }
+  
+  /* Header */
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+  }
+  
+  .section-title {
+    font-size: var(--text-4xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+  }
+  
+  .title-icon {
+    font-size: var(--text-5xl);
+  }
+  
+  .section-subtitle {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+  }
+  
+  /* Grid */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2xl);
+  }
+  
+  /* Skill Card */
+  .skill-card {
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    transition: all var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+  
+  .skill-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--color-primary);
+  }
+  
+  /* Icon */
+  .skill-icon {
+    font-size: 3.5rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    border-radius: var(--radius-lg);
+    margin: 0 auto;
+    box-shadow: var(--shadow-md);
+  }
+  
+  /* Category Title */
+  .skill-category {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--color-text);
+    text-align: center;
+    margin: 0;
+  }
+  
+  /* Skills List */
+  .skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin: 0;
+    padding: 0;
+  }
+  
+  .skill-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    padding: var(--space-xs) 0;
+    transition: all var(--transition-fast);
+  }
+  
+  .skill-item:hover {
+    color: var(--color-primary);
+    transform: translateX(4px);
+  }
+  
+  .skill-bullet {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: var(--text-lg);
+  }
+  
+  /* Dark mode adjustments */
+  [data-theme="dark"] .skill-card {
+    background: var(--color-background-secondary);
+  }
+  
+  [data-theme="dark"] .skill-icon {
+    background: linear-gradient(135deg, #1A3A7A 0%, #2448A6 100%);
+  }
+  
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .skill-card {
+      padding: var(--space-xl);
+    }
+    
+    .skill-icon {
+      width: 70px;
+      height: 70px;
+      font-size: 3rem;
+    }
+  }
+</style>

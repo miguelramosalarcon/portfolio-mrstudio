@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "company": "BOXA SAC",
+    "position": "Programador Web, SEO y Soporte TI",
+    "period": "Abril 2025 - Octubre 2025",
+    "startDate": "2025-04",
+    "endDate": "2025-10",
+    "current": false,
+    "location": "Lima, Perú",
+    "description": "Desarrollo de módulos personalizados en Odoo y optimización web integral",
+    "achievements": [
+      "Desarrollo de módulos personalizados en Odoo para el área de servicio técnico",
+      "Automatización de procesos e indicadores alineados a ISO 9001:2015",
+      "Optimización SEO moderna y mejora de rendimiento web (+30% tráfico orgánico)",
+      "Desarrollo de shortcodes en WordPress y scripts personalizados en PHP"
+    ],
+    "tags": ["Odoo", "Python", "WordPress", "PHP", "SEO", "ISO 9001"]
+  },
+  {
+    "id": 2,
+    "company": "SENSOR SRL",
+    "position": "Técnico Informático / Programador Web",
+    "period": "Enero 2019 - Marzo 2025",
+    "startDate": "2019-01",
+    "endDate": "2025-03",
+    "current": false,
+    "location": "Lima, Perú",
+    "description": "Desarrollo web, soporte técnico y análisis de datos",
+    "achievements": [
+      "Desarrollo y mantenimiento web en PHP y WordPress",
+      "Soporte TI integral para toda la empresa",
+      "Análisis estadístico con SPSS para estudios de mercado",
+      "Community Manager de redes sociales corporativas"
+    ],
+    "tags": ["WordPress", "PHP", "SPSS", "Community Manager", "Soporte TI"]
+  },
+  {
+    "id": 3,
+    "company": "IDICE DEL PERU SAC",
+    "position": "Técnico Informático",
+    "period": "Enero 2007 - Agosto 2018",
+    "startDate": "2007-01",
+    "endDate": "2018-08",
+    "current": false,
+    "location": "Lima, Perú",
+    "description": "Diseño gráfico, desarrollo web y soporte técnico",
+    "achievements": [
+      "Diagramación de la revista Pulso Municipal para impresión",
+      "Diseño de contenido para redes sociales",
+      "Desarrollo de sitio web empresarial sin frameworks",
+      "Soporte técnico preventivo y correctivo"
+    ],
+    "tags": ["Diseño Gráfico", "WordPress", "Soporte TI", "Corel Draw"]
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "category": "Frontend Development",
+    "icon": "💻",
+    "skills": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "React",
+      "Bootstrap",
+      "Astro"
+    ]
+  },
+  {
+    "category": "Backend Development",
+    "icon": "⚙️",
+    "skills": [
+      "PHP",
+      "Python",
+      "SQL Server",
+      "MySQL",
+      "PostgreSQL",
+      "Oracle",
+      "Node.js"
+    ]
+  },
+  {
+    "category": "CMS & E-commerce",
+    "icon": "🛍️",
+    "skills": [
+      "WordPress",
+      "WooCommerce",
+      "Shopify",
+      "Liquid",
+      "Odoo"
+    ]
+  },
+  {
+    "category": "Analytics & SEO",
+    "icon": "📊",
+    "skills": [
+      "SEMrush",
+      "Search Console",
+      "GA4",
+      "Performance"
+    ]
+  },
+  {
+    "category": "Business Intelligence",
+    "icon": "📈",
+    "skills": [
+      "Power BI",
+      "Looker Studio",
+      "Excel Avanzado"
+    ]
+  },
+  {
+    "category": "Tools & Automation",
+    "icon": "🔧",
+    "skills": [
+      "Git/GitHub",
+      "Apps Script",
+      "Bizagi",
+      "SPSS"
+    ]
+  }
+]
