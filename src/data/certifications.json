@@ -185,5 +185,16 @@
     "icon": "📈",
     "featured": false,
     "tags": ["Excel", "Ofimática", "Microsoft Office"]
+  },
+  {
+    "id": 18,
+    "name": "MySQL",
+    "institution": "Lima Educa",
+    "date": "2025-07",
+    "hours": 24,
+    "category": "Bases de Datos",
+    "icon": "💾",
+    "featured": false,
+    "tags": ["SQL", "Database", "Backend", "Data"]
   }
 ]
