@@ -1,0 +1,189 @@
+[
+  {
+    "id": 1,
+    "name": "Fundamentos de Gestión de Proyectos bajo el enfoque Scrum + IA",
+    "institution": "CTIC-UNI",
+    "date": "2025-11",
+    "hours": 18,
+    "category": "Gestión de Proyectos",
+    "icon": "📊",
+    "featured": true,
+    "tags": ["Scrum", "Agile", "IA", "Project Management"]
+  },
+  {
+    "id": 2,
+    "name": "Fundamentos de ITIL v4 + IA",
+    "institution": "CTIC-UNI",
+    "date": "2025-11",
+    "hours": 18,
+    "category": "Gestión de Proyectos",
+    "icon": "⚙️",
+    "featured": true,
+    "tags": ["ITIL", "Service Management", "IA", "IT Operations"]
+  },
+  {
+    "id": 3,
+    "name": "Javascript Básico + IA",
+    "institution": "CTIC-UNI",
+    "date": "2025-11",
+    "hours": 18,
+    "category": "Programación",
+    "icon": "💻",
+    "featured": true,
+    "tags": ["JavaScript", "IA", "Frontend", "Web Development"]
+  },
+  {
+    "id": 4,
+    "name": "Interpretación de la Norma ISO 9001:2025",
+    "institution": "BSConsulting",
+    "date": "2025-08",
+    "hours": 12,
+    "category": "Gestión de Calidad",
+    "icon": "📋",
+    "featured": true,
+    "tags": ["ISO", "Calidad", "Gestión", "Normas"]
+  },
+  {
+    "id": 5,
+    "name": "Oracle Fundamentals",
+    "institution": "Lima Educa",
+    "date": "2025-08",
+    "hours": 24,
+    "category": "Bases de Datos",
+    "icon": "🗄️",
+    "featured": false,
+    "tags": ["Oracle", "Database", "SQL", "Backend"]
+  },
+  {
+    "id": 6,
+    "name": "Python Fundamentals",
+    "institution": "Lima Educa",
+    "date": "2025-08",
+    "hours": 24,
+    "category": "Programación",
+    "icon": "🐍",
+    "featured": true,
+    "tags": ["Python", "Programming", "Backend", "Scripting"]
+  },
+  {
+    "id": 7,
+    "name": "Gestión Efectiva del Tiempo",
+    "institution": "MTPE",
+    "date": "2025-03",
+    "hours": 8,
+    "category": "Desarrollo Personal",
+    "icon": "⏰",
+    "featured": false,
+    "tags": ["Productividad", "Gestión del Tiempo", "Soft Skills"]
+  },
+  {
+    "id": 8,
+    "name": "Desarrollo FrontEnd Básico",
+    "institution": "MTPE",
+    "date": "2025-02",
+    "hours": 30,
+    "category": "Programación",
+    "icon": "🎨",
+    "featured": false,
+    "tags": ["Frontend", "HTML", "CSS", "JavaScript", "Web Development"]
+  },
+  {
+    "id": 9,
+    "name": "SQL Fundamentals",
+    "institution": "Lima Educa",
+    "date": "2024-09",
+    "hours": 24,
+    "category": "Bases de Datos",
+    "icon": "💾",
+    "featured": false,
+    "tags": ["SQL", "Database", "Backend", "Data"]
+  },
+  {
+    "id": 10,
+    "name": "Soporte Técnico Remoto de Computadoras",
+    "institution": "Lima Educa",
+    "date": "2024-08",
+    "hours": 30,
+    "category": "Soporte Técnico",
+    "icon": "🔧",
+    "featured": false,
+    "tags": ["Soporte", "Hardware", "Troubleshooting", "IT Support"]
+  },
+  {
+    "id": 11,
+    "name": "Excel Avanzado",
+    "institution": "Conecta Empleo",
+    "date": "2024-06",
+    "hours": 30,
+    "category": "Ofimática",
+    "icon": "📊",
+    "featured": false,
+    "tags": ["Excel", "Ofimática", "Análisis de Datos", "Microsoft Office"]
+  },
+  {
+    "id": 12,
+    "name": "Word Intermedio",
+    "institution": "Fundación Romero",
+    "date": "2024-06",
+    "hours": 8,
+    "category": "Ofimática",
+    "icon": "📝",
+    "featured": false,
+    "tags": ["Word", "Ofimática", "Documentos", "Microsoft Office"]
+  },
+  {
+    "id": 13,
+    "name": "PowerPoint Intermedio",
+    "institution": "Fundación Romero",
+    "date": "2024-06",
+    "hours": 7,
+    "category": "Ofimática",
+    "icon": "📊",
+    "featured": false,
+    "tags": ["PowerPoint", "Presentaciones", "Ofimática", "Microsoft Office"]
+  },
+  {
+    "id": 14,
+    "name": "Prácticas de Ofimática",
+    "institution": "Fundación Carlos Slim",
+    "date": "2024-06",
+    "hours": 20,
+    "category": "Ofimática",
+    "icon": "💼",
+    "featured": false,
+    "tags": ["Ofimática", "Microsoft Office", "Productividad"]
+  },
+  {
+    "id": 15,
+    "name": "Técnico Instalación y Reparación de Equipos de Cómputo",
+    "institution": "Fundación Carlos Slim",
+    "date": "2024-06",
+    "hours": 103,
+    "category": "Soporte Técnico",
+    "icon": "🛠️",
+    "featured": false,
+    "tags": ["Hardware", "Reparación", "Instalación", "IT Support"]
+  },
+  {
+    "id": 16,
+    "name": "Analista de Optimización en Motores de Búsqueda SEO",
+    "institution": "Fundación Carlos Slim",
+    "date": "2024-06",
+    "hours": 11,
+    "category": "Marketing Digital",
+    "icon": "🔍",
+    "featured": false,
+    "tags": ["SEO", "Marketing Digital", "Web", "Optimización"]
+  },
+  {
+    "id": 17,
+    "name": "Excel Intermedio",
+    "institution": "Fundación Romero",
+    "date": "2023-08",
+    "hours": 16,
+    "category": "Ofimática",
+    "icon": "📈",
+    "featured": false,
+    "tags": ["Excel", "Ofimática", "Microsoft Office"]
+  }
+]
