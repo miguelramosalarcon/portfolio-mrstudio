@@ -196,5 +196,16 @@
     "icon": "💾",
     "featured": false,
     "tags": ["SQL", "Database", "Backend", "Data"]
+  },
+  {
+    "id": 19,
+    "name": "PostgreSQL",
+    "institution": "Lima Educa",
+    "date": "2025-07",
+    "hours": 24,
+    "category": "Bases de Datos",
+    "icon": "💾",
+    "featured": false,
+    "tags": ["SQL", "Database", "Backend", "Data"]
   }
 ]
