@@ -1,13 +1,8 @@
 ---
 import certificationsData from '../../data/certifications.json';
 
-// Ordenar certificaciones: destacadas primero, luego por fecha (más reciente primero)
+// Ordenar certificaciones por fecha (más reciente primero)
 const certifications = certificationsData.sort((a, b) => {
-  // Primero destacadas
-  if (a.featured && !b.featured) return -1;
-  if (!a.featured && b.featured) return 1;
-  
-  // Luego por fecha (más reciente primero)
   return b.date.localeCompare(a.date);
 });
 
@@ -19,6 +14,13 @@ const categories = [...new Set(certifications.map(c => c.category))].sort();
 
 // Calcular total de horas
 const totalHours = certifications.reduce((sum, cert) => sum + cert.hours, 0);
+
+// Agrupar por año
+const certsByYear = years.map(year => ({
+  year,
+  courses: certifications.filter(c => c.date.startsWith(year)),
+  totalHours: certifications.filter(c => c.date.startsWith(year)).reduce((sum, c) => sum + c.hours, 0)
+}));
 
 // Formatear fecha para mostrar
 function formatDate(dateStr) {
@@ -76,43 +78,51 @@ function formatDate(dateStr) {
       </div>
     </div>
     
-    <!-- Lista de certificaciones -->
-    <div class="certifications-list" id="certifications-list">
-      {certifications.map((cert) => (
-        <div 
-          class="cert-item" 
-          data-year={cert.date.substring(0, 4)}
-          data-category={cert.category}
-        >
-          <article class="cert-card">
-            <!-- Icono -->
-            <div class="cert-icon-wrapper">
-              <span class="cert-icon">{cert.icon}</span>
-            </div>
-            
-            <!-- Contenido -->
-            <div class="cert-content">
-              <div class="cert-header">
-                <h3 class="cert-name">{cert.name}</h3>
-                {cert.featured && (
-                  <span class="cert-badge">⭐ Destacado</span>
-                )}
+    <!-- Timeline de certificaciones -->
+    <div class="timeline">
+      {certsByYear.map(({ year, courses, totalHours: yearHours }) => (
+        <div class="timeline-year animate-on-scroll" data-year={year}>
+          <div class="year-header">
+            <div class="year-marker"></div>
+            <h3 class="year-title">{year}</h3>
+            <span class="year-info">{courses.length} cursos • {yearHours} horas</span>
+          </div>
+          
+          <div class="timeline-items">
+            {courses.map((cert, index) => (
+              <div 
+                class="timeline-item animate-on-scroll" 
+                data-year={year}
+                data-category={cert.category}
+                style={`animation-delay: ${index * 0.1}s`}
+              >
+                <div class="timeline-marker">
+                  <span class="cert-icon">{cert.icon}</span>
+                </div>
+                
+                <div class="timeline-content">
+                  <div class="cert-header">
+                    <h4 class="cert-name">{cert.name}</h4>
+                    {cert.featured && (
+                      <span class="cert-badge">⭐ Destacado</span>
+                    )}
+                  </div>
+                  
+                  <div class="cert-meta">
+                    <span class="cert-institution">🏢 {cert.institution}</span>
+                    <span class="cert-date">📅 {formatDate(cert.date)}</span>
+                    <span class="cert-hours">⏱️ {cert.hours} horas</span>
+                  </div>
+                  
+                  <div class="cert-tags">
+                    {cert.tags.map(tag => (
+                      <span class="cert-tag">{tag}</span>
+                    ))}
+                  </div>
+                </div>
               </div>
-              
-              <div class="cert-meta">
-                <span class="cert-institution">🏢 {cert.institution}</span>
-                <span class="cert-date">📅 {formatDate(cert.date)}</span>
-                <span class="cert-hours">⏱️ {cert.hours} horas</span>
-              </div>
-              
-              <!-- Tags -->
-              <div class="cert-tags">
-                {cert.tags.map(tag => (
-                  <span class="cert-tag">{tag}</span>
-                ))}
-              </div>
-            </div>
-          </article>
+            ))}
+          </div>
         </div>
       ))}
     </div>
@@ -210,67 +220,115 @@ function formatDate(dateStr) {
     border-color: var(--color-primary);
   }
   
-  /* Lista de certificaciones */
-  .certifications-list {
+  /* Timeline */
+  .timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  /* Año en timeline */
+  .timeline-year {
+    margin-bottom: var(--space-3xl);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+  }
+  
+  .timeline-year.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .year-header {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+    position: relative;
   }
   
-  .cert-item {
-    animation: fadeInUp 0.5s ease-out;
+  .year-marker {
+    width: 20px;
+    height: 20px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    border: 4px solid var(--color-background);
+    box-shadow: 0 0 0 4px var(--color-primary-light);
+    flex-shrink: 0;
+    z-index: 2;
   }
   
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .year-title {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: 0;
   }
   
-  /* Card de certificación */
-  .cert-card {
+  .year-info {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    font-weight: 600;
+  }
+  
+  /* Items de timeline */
+  .timeline-items {
+    position: relative;
+    padding-left: var(--space-xl);
+    border-left: 3px solid var(--color-primary-light);
+    margin-left: 9px;
+  }
+  
+  .timeline-item {
+    position: relative;
+    margin-bottom: var(--space-xl);
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s ease-out;
+  }
+  
+  .timeline-item.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .timeline-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .timeline-marker {
+    position: absolute;
+    left: calc(-1 * var(--space-xl) - 27px);
+    top: 0;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+    border-radius: var(--radius-lg);
     display: flex;
-    gap: var(--space-xl);
-    padding: var(--space-xl);
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 61, 166, 0.2);
+    z-index: 2;
+  }
+  
+  .timeline-marker .cert-icon {
+    font-size: 1.5rem;
+  }
+  
+  /* Contenido del curso */
+  .timeline-content {
     background: var(--color-background);
+    padding: var(--space-xl);
     border-radius: var(--radius-lg);
     border: 1px solid var(--color-border);
     transition: all var(--transition-base);
   }
   
-  .cert-card:hover {
+  .timeline-content:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0, 61, 166, 0.1);
     border-color: var(--color-primary-light);
-  }
-  
-  /* Icono */
-  .cert-icon-wrapper {
-    flex-shrink: 0;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
-    border-radius: var(--radius-lg);
-  }
-  
-  .cert-icon {
-    font-size: 2rem;
-  }
-  
-  /* Contenido */
-  .cert-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
   }
   
   .cert-header {
@@ -278,6 +336,7 @@ function formatDate(dateStr) {
     align-items: flex-start;
     justify-content: space-between;
     gap: var(--space-md);
+    margin-bottom: var(--space-md);
   }
   
   .cert-name {
@@ -306,6 +365,7 @@ function formatDate(dateStr) {
     gap: var(--space-lg);
     font-size: var(--text-sm);
     color: var(--color-text-secondary);
+    margin-bottom: var(--space-md);
   }
   
   .cert-institution,
@@ -339,6 +399,8 @@ function formatDate(dateStr) {
     background: var(--color-background);
     border-radius: var(--radius-lg);
     border: 2px dashed var(--color-border);
+    max-width: 1000px;
+    margin: 0 auto;
   }
   
   .no-results p {
@@ -364,29 +426,43 @@ function formatDate(dateStr) {
   }
   
   /* Dark mode */
-  [data-theme="dark"] .cert-card {
+  [data-theme="dark"] .timeline-content {
     background: rgba(255, 255, 255, 0.03);
     border-color: rgba(255, 255, 255, 0.1);
   }
   
-  [data-theme="dark"] .cert-card:hover {
+  [data-theme="dark"] .timeline-content:hover {
     box-shadow: 0 8px 24px rgba(36, 72, 166, 0.2);
+  }
+  
+  [data-theme="dark"] .year-marker {
+    border-color: rgba(255, 255, 255, 0.05);
   }
   
   /* Responsive */
   @media (max-width: 768px) {
-    .cert-card {
-      flex-direction: column;
-      gap: var(--space-md);
+    .timeline-items {
+      padding-left: var(--space-md);
+      margin-left: 5px;
     }
     
-    .cert-icon-wrapper {
-      width: 50px;
-      height: 50px;
+    .timeline-marker {
+      left: calc(-1 * var(--space-md) - 23px);
+      width: 40px;
+      height: 40px;
     }
     
-    .cert-icon {
-      font-size: 1.5rem;
+    .timeline-marker .cert-icon {
+      font-size: 1.2rem;
+    }
+    
+    .year-marker {
+      width: 16px;
+      height: 16px;
+    }
+    
+    .year-title {
+      font-size: var(--text-xl);
     }
     
     .cert-header {
@@ -410,9 +486,33 @@ function formatDate(dateStr) {
 </style>
 
 <script>
-  // Filtros de certificaciones
+  // ========================================
+  // ANIMACIONES SCROLL (como Experience)
+  // ========================================
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+      }
+    });
+  }, observerOptions);
+
+  // Observar años y items para animaciones
+  const timelineYears = document.querySelectorAll('.timeline-year');
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  
+  timelineYears.forEach((year) => observer.observe(year));
+  timelineItems.forEach((item) => observer.observe(item));
+
+  // ========================================
+  // FILTROS DE CERTIFICACIONES
+  // ========================================
   const filterButtons = document.querySelectorAll('.certifications-section .filter-btn');
-  const certItems = document.querySelectorAll('.cert-item');
   const noResults = document.getElementById('no-results-certs');
   const btnResetFilters = document.querySelector('.btn-reset-filters-certs');
   
@@ -422,30 +522,49 @@ function formatDate(dateStr) {
   };
   
   function filterCertifications() {
-    let visibleCount = 0;
+    let visibleYearsCount = 0;
+    let totalVisibleItems = 0;
     
-    certItems.forEach((item) => {
-      const year = item.getAttribute('data-year');
-      const category = item.getAttribute('data-category');
+    // Filtrar por año y categoría
+    timelineYears.forEach((yearSection) => {
+      const yearValue = yearSection.getAttribute('data-year');
+      const itemsInYear = yearSection.querySelectorAll('.timeline-item');
+      let visibleInYear = 0;
       
       // Verificar filtro de año
-      const yearMatch = activeFilters.year === 'all' || year === activeFilters.year;
+      const yearMatch = activeFilters.year === 'all' || yearValue === activeFilters.year;
       
-      // Verificar filtro de categoría
-      const categoryMatch = activeFilters.category === 'all' || category === activeFilters.category;
+      if (!yearMatch) {
+        (yearSection as HTMLElement).style.display = 'none';
+        return;
+      }
       
-      // Mostrar/ocultar (CON TYPE ASSERTION)
-      if (yearMatch && categoryMatch) {
-        (item as HTMLElement).style.display = 'block';
-        visibleCount++;
+      // Filtrar items dentro del año
+      itemsInYear.forEach((item) => {
+        const category = item.getAttribute('data-category');
+        const categoryMatch = activeFilters.category === 'all' || category === activeFilters.category;
+        
+        if (categoryMatch) {
+          (item as HTMLElement).style.display = 'block';
+          visibleInYear++;
+          totalVisibleItems++;
+        } else {
+          (item as HTMLElement).style.display = 'none';
+        }
+      });
+      
+      // Mostrar/ocultar año completo
+      if (visibleInYear > 0) {
+        (yearSection as HTMLElement).style.display = 'block';
+        visibleYearsCount++;
       } else {
-        (item as HTMLElement).style.display = 'none';
+        (yearSection as HTMLElement).style.display = 'none';
       }
     });
     
     // Mostrar mensaje si no hay resultados
     if (noResults) {
-      (noResults as HTMLElement).style.display = visibleCount === 0 ? 'block' : 'none';
+      (noResults as HTMLElement).style.display = totalVisibleItems === 0 ? 'block' : 'none';
     }
   }
   
