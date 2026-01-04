@@ -61,7 +61,7 @@
     "tags": ["Shopify", "Liquid", "Google Apps Script", "Automation"],
     "status": "active",
     "featured": true,
-    "year": "2024-2025",
+    "year": "2025",
     "category": "ecommerce"
   },
   {
@@ -74,7 +74,7 @@
     "tags": ["WooCommerce", "Performance", "WP Rocket"],
     "status": "active",
     "featured": false,
-    "year": "2024-2025",
+    "year": "2022-2023",
     "category": "ecommerce"
   },
   {
@@ -139,7 +139,7 @@
     "tags": ["WordPress", "Corporate"],
     "status": "active",
     "featured": false,
-    "year": "2022",
+    "year": "2024",
     "category": "corporate"
   },
   {
@@ -165,7 +165,7 @@
     "tags": ["WordPress", "SEO", "Health"],
     "status": "active",
     "featured": false,
-    "year": "2022",
+    "year": "2024",
     "category": "health"
   },
   {
@@ -178,7 +178,7 @@
     "tags": ["WordPress", "Education"],
     "status": "archived",
     "featured": false,
-    "year": "2021",
+    "year": "2022",
     "category": "education"
   },
   {
