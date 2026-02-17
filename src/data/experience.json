@@ -1,6 +1,25 @@
 [
   {
     "id": 1,
+    "company": "SENATI",
+    "position": "Docente de Desarrollo Web",
+    "period": "Febrero 2026 - Actualidad",
+    "startDate": "2026-02",
+    "endDate": "",
+    "current": true,
+    "location": "Lima, Perú",
+    "description": "Docencia en Desarrollo Web, Desarrollo Móvil, Servicios Web, Administración y Gestión de Proyectos, Inteligencia de Negocios",
+    "achievements": [
+       "Diseño y ejecución de sesiones prácticas de Desarrollo Web con HTML, CSS, JavaScript y frameworks modernos",
+      "Enseñanza de Desarrollo Móvil con Android Studio y Java, guiando proyectos funcionales de los alumnos",
+      "Formación en Servicios Web (APIs REST) y consumo de datos en aplicaciones web y móviles",
+      "Capacitación en herramientas de Inteligencia de Negocios para análisis y visualización de datos",
+      "Gestión de módulos de Administración y Gestión de Proyectos aplicando marcos ágiles (Scrum)"
+    ],
+    "tags": ["Android Studio", "Java", "WordPress", "Shopify", "PHP", "REST APIs"]
+  },
+  {
+    "id": 2,
     "company": "BOXA SAC",
     "position": "Programador Web, SEO y Soporte TI",
     "period": "Abril 2025 - Octubre 2025",
@@ -18,7 +37,7 @@
     "tags": ["Odoo", "Python", "WordPress", "PHP", "SEO", "ISO 9001"]
   },
   {
-    "id": 2,
+    "id": 3,
     "company": "SENSOR SRL",
     "position": "Técnico Informático / Programador Web",
     "period": "Enero 2019 - Marzo 2025",
@@ -36,7 +55,7 @@
     "tags": ["WordPress", "PHP", "SPSS", "Community Manager", "Soporte TI"]
   },
   {
-    "id": 3,
+    "id": 4,
     "company": "IDICE DEL PERU SAC",
     "position": "Técnico Informático",
     "period": "Enero 2007 - Agosto 2018",
