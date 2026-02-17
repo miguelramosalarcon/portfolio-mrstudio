@@ -25,6 +25,16 @@
     ]
   },
   {
+    "category": "Desarrollo Móvil",
+    "icon": "📱",
+    "skills": [
+      "Android Studio",
+      "Java",
+      "Kotlin",
+      "SQLLite"
+    ]
+  },
+  {
     "category": "CMS & E-commerce",
     "icon": "🛍️",
     "skills": [
